@@ -2,13 +2,12 @@ def input_error(func):
     def inner(*args, **kwargs):
         try:
             return func(*args, **kwargs)
-        except (KeyError, ValueError, IndexError) as e:
-            if isinstance(e, KeyError):
-                return "Contact not found."
-            elif isinstance(e, ValueError):
-                return "Enter the argument for the command"
-            elif isinstance(e, IndexError):
-                return "Invalid command. Usage: change [name] [phone]"
+            except KeyError:
+            return "Contact not found."
+        except ValueError:
+            return "Enter the argument for the command"
+        except IndexError:
+            return "Invalid command. Usage: change [name] [phone]"
     return inner
 
 def parse_input(user_input):
